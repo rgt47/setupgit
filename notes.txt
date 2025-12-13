@@ -1,0 +1,20 @@
+Notes on deleting files once already pushed to github
+
+Dropbox/dotfiles ☕ git rm --cached -r '.password-store'
+rm '.password-store'
+Dropbox/dotfiles ☕ git commit -m 'removed .pass'
+[master d7f802c] removed .pass
+ 1 file changed, 1 deletion(-)
+ delete mode 160000 .password-store
+Dropbox/dotfiles ☕ git push
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 219 bytes | 219.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:rgt47/dotfiles.git
+   8d0b9bd..d7f802c  master -> master
+Dropbox/dotfiles ☕ vm .gitignore
+(add .password-store to .gitignore file)

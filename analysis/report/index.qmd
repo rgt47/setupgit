@@ -1,6 +1,6 @@
 ---
 title: "Setting up Git for Solo Data Science Workflow"
-draft: true
+draft: false
 description: "A comprehensive guide to configuring Git for individual data science projects and research workflows"
 author: "Ronald G. Thomas"
 date: today

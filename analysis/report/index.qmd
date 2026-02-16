@@ -96,8 +96,7 @@ errors or have better approaches, please let me know in
 the Let's Connect section at the end.
 
 
-![GitHub interface showing repository collaboration
-features](media/images/ambiance1.png){.img-fluid}
+![](media/images/git-logo.png){.img-fluid width=30% fig-align="center"}
 
 *GitHub provides the remote hosting layer that makes
 Git-based collaboration practical for research teams.*

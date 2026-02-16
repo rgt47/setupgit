@@ -5,7 +5,7 @@ subtitle: >
   and small research teams
 author: "Ronald G. Thomas"
 date: "2026-02-11"
-categories: [Git, GitHub, Version Control]
+categories: [git, github, version-control, reproducibility, tutorial]
 description: >
   I did not really know how much time I was wasting
   without proper version control until a single

@@ -10,7 +10,7 @@ description: >
   I did not really know how much time I was wasting
   without proper version control until a single
   overwritten script cost me three days of work.
-image: "media/images/hero.png"
+image: "media/images/hero.jpg"
 document-type: "blog"
 draft: false
 execute:
@@ -96,7 +96,7 @@ errors or have better approaches, please let me know in
 the Let's Connect section at the end.
 
 
-![](media/images/git-logo.png){.img-fluid width=30% fig-align="center"}
+![Settling in for version control setup.](media/images/placeholder-coffee-04.jpg){.img-fluid width=30% fig-align="center"}
 
 *GitHub provides the remote hosting layer that makes
 Git-based collaboration practical for research teams.*
@@ -603,6 +603,47 @@ ssh-add ~/.ssh/id_ed25519
 ```
 
 
+# Verification
+
+After installing and configuring Git, confirm that
+the setup is working correctly.
+
+```bash
+git --version
+```
+
+```bash
+git config user.name && git config user.email
+```
+
+```bash
+ssh -T git@github.com
+```
+
+```bash
+mkdir /tmp/test-repo && cd /tmp/test-repo && \
+  git init && touch README.md && \
+  git add . && git commit -m "test" && \
+  git log --oneline
+```
+
+If `git --version` returns 2.30+, the config shows
+your name and email, SSH authenticates successfully,
+and the test commit appears in the log, the setup is
+complete.
+
+# Daily Workflow
+
+| Task | Command |
+|:-----|:--------|
+| Check status | `git status` |
+| Stage files | `git add analysis.R data/clean.csv` |
+| Commit changes | `git commit -m "feat: Add model"` |
+| Push to remote | `git push origin main` |
+| Pull latest | `git pull origin main` |
+| Create branch | `git checkout -b experiment` |
+| Merge branch | `git checkout main && git merge experiment` |
+
 ## Things to Watch Out For
 
 1. **Never commit credentials or API keys.** Add
@@ -632,6 +673,40 @@ ssh-add ~/.ssh/id_ed25519
    commits.
 
 
+# Uninstall / Rollback
+
+To remove Git configuration without uninstalling Git
+itself:
+
+```bash
+git config --global --unset user.name
+git config --global --unset user.email
+git config --global --unset init.defaultBranch
+git config --global --unset core.editor
+```
+
+To remove SSH keys used for GitHub:
+
+```bash
+rm ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub
+```
+
+To remove Git entirely on macOS, uninstall the
+Command Line Tools. On Ubuntu:
+
+```bash
+sudo apt remove git
+```
+
+To remove version control from a single project,
+delete its `.git` directory:
+
+```bash
+rm -rf .git
+```
+
+This is irreversible and destroys all project history.
+
 ![UCSD Geisel Library, a landmark of research and
 learning](media/images/ambiance3.jpg){.img-fluid}
 
@@ -639,9 +714,11 @@ learning](media/images/ambiance3.jpg){.img-fluid}
 rigor that characterizes scholarly research.*
 
 
+# What Did We Learn?
+
 ## Lessons Learnt
 
-### Conceptual Understanding
+**Conceptual Understanding:**
 
 - Version control is not merely a backup system; it is
   a structured record of a project's intellectual
@@ -656,7 +733,7 @@ rigor that characterizes scholarly research.*
   form of documentation that is often more useful than
   formal project notes.
 
-### Technical Skills
+**Technical Skills:**
 
 - The core workflow (`add`, `commit`, `push`, `pull`)
   covers the vast majority of daily version control
@@ -671,7 +748,7 @@ rigor that characterizes scholarly research.*
   against accidentally committing sensitive or
   oversized files.
 
-### Gotchas and Pitfalls
+**Gotchas and Pitfalls:**
 
 - Forgetting to add a `.gitignore` before the first
   commit can result in large data files entering the

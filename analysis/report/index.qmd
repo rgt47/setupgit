@@ -3,7 +3,7 @@ title: "Setting Up Git for Data Science Workflows"
 subtitle: >
   A practical guide to version control for solo analysts
   and small research teams
-author: "Ronald G. Thomas"
+author: "Ronald 'Ryy' G. Thomas"
 date: "2026-02-11"
 categories: [git, github, version-control, reproducibility, tutorial]
 description: >

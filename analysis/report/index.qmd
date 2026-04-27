@@ -57,6 +57,15 @@ valuable. I am writing as a learner, not as an expert, and
 I welcome corrections or suggestions from readers who
 have found better approaches.
 
+More formally, this post documents the version-control concern
+that cuts across multiple layers of the Workflow Construct
+described in [post 52](/posts/52-workflow-construct/). Git is
+not itself a layer; it is the mechanism by which the
+file-system layer's snapshots, the dotfiles repository's
+source of truth, the project compendium's history, and the
+cloud layer's deployments are all coordinated. This post
+documents Git's configuration as the baseline that every
+other layer assumes.
 
 ## Motivations
 

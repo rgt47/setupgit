@@ -854,11 +854,9 @@ consistent narratives of your project's evolution.
 
 **Related blog posts:**
 
-- [Setting Up Dotfiles on GitHub](
-  ../24-setupdotfilesongithub/setupdotfilesongithub/analysis/report/index.qmd)
+- [Setting Up Dotfiles on GitHub](/posts/24-setupdotfilesongithub/setupdotfilesongithub/analysis/report/index.qmd)
   -- Managing configuration files with Git
-- [Configuring the Terminal for Data Science](
-  ../01-configtermzsh/configtermzsh/analysis/report/index.qmd)
+- [Configuring the Terminal for Data Science](/posts/01-configtermzsh/configtermzsh/analysis/report/index.qmd)
   -- Terminal setup that complements a Git workflow
 
 **Key external resources:**

@@ -3,10 +3,7 @@ title: "Setting Up Git for Data Science Workflows"
 author: "Ronald G. Thomas"
 date: "2026-02-11"
 categories: [git, reproducibility]
-description: >
-  I did not really know how much time I was wasting
-  without proper version control until a single
-  overwritten script cost me three days of work.
+description: "I did not really know how much time I was wasting without proper version control until a single overwritten script cost me three days of work."
 image: "media/images/hero.png"
 document-type: "blog"
 draft: true
@@ -100,7 +97,7 @@ errors or have better approaches, please let me know in
 the Let's Connect section at the end.
 
 
-![Settling in for version control setup.](media/images/ambiance1.png){.img-fluid width=30% fig-align="center"}
+![Settling in for version control setup.](media/images/ambiance1.png){.img-fluid height=3.5in}
 
 *GitHub provides the remote hosting layer that makes
 Git-based collaboration practical for research teams.*
@@ -309,7 +306,7 @@ latest version is available.
 
 
 ![Soft atmospheric image suggesting focused
-work](media/images/ambiance2.png){.img-fluid}
+work](media/images/ambiance2.png){.img-fluid height=3.5in}
 
 *Establishing a consistent workflow early prevents most
 version control headaches downstream.*
@@ -712,7 +709,7 @@ rm -rf .git
 This is irreversible and destroys all project history.
 
 ![UCSD Geisel Library, a landmark of research and
-learning](media/images/ambiance3.png){.img-fluid}
+learning](media/images/ambiance3.png){.img-fluid height=3.5in}
 
 *Disciplined version control practices support the same
 rigor that characterizes scholarly research.*

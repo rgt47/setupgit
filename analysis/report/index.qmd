@@ -51,7 +51,7 @@ who have found better approaches are welcome.
 
 More formally, we document the version-control concern
 that cuts across multiple layers of the Workflow Construct
-described in [post 52](/posts/52-workflow-construct/). Git is
+described in [post 15](/posts/15-wf-construct-overview-anchor/). Git is
 not itself a layer; it is the mechanism by which the
 file-system layer's snapshots, the dotfiles repository's
 source of truth, the project compendium's history, and the
@@ -84,13 +84,14 @@ other layer assumes.
 ## Objectives
 
 1. Install and configure Git on macOS or Linux, including
-   identity setup and SSH authentication.
+   identity setup and GitHub authentication through the
+   `gh` command-line tool.
 2. Learn the core Git workflow: staging, committing,
    pushing, and pulling changes.
 3. Understand branching and merging for safe
    experimentation and collaboration.
-4. Adopt commit message best practices drawn from the
-   Angular project and the imperative mood convention.
+4. Adopt a plain, imperative-mood commit message
+   convention.
 
 I am documenting my learning process here. If you spot
 errors or have better approaches, please let me know in
@@ -117,6 +118,8 @@ be helpful.
 - A terminal emulator (Terminal.app, iTerm2, Kitty, or
   similar)
 - A GitHub account (free tier is sufficient)
+- The GitHub CLI (`gh`), used for authentication and for
+  the collaboration steps later in this post
 - A text editor (Vim, Neovim, VS Code, or RStudio)
 
 **Installing Git on macOS:**
@@ -137,6 +140,18 @@ git --version
 ```bash
 sudo apt update && sudo apt install git
 ```
+
+**Installing the GitHub CLI:**
+
+```bash
+brew install gh
+```
+
+On Linux, follow the install instructions at
+[cli.github.com](https://cli.github.com/). The `gh` tool
+handles GitHub authentication and, later in this post, the
+collaboration workflow (creating repositories, opening
+pull requests) without leaving the terminal.
 
 
 # What is Git?
@@ -188,25 +203,44 @@ To verify the configuration:
 git config --list
 ```
 
-**Setting up SSH authentication with GitHub:**
+**Editing the Git configuration directly:**
 
-SSH keys allow pushing and pulling from GitHub without
-entering a password each time. Generate a key pair:
+For advanced users, the repository-level configuration
+file at `.git/config` can be edited to adjust remote
+URLs, branch tracking, and other settings.
+
+**Authenticating with GitHub:**
+
+The simplest way to connect Git to a GitHub account is
+the `gh` CLI. Run the login command and follow the
+prompts:
 
 ```bash
-ssh-keygen -t ed25519 \
-  -C "you@example.com"
+gh auth login
 ```
 
-Then add the public key to the GitHub account under
-Settings > SSH and GPG keys. Test the connection:
+Choose GitHub.com, choose HTTPS as the preferred
+protocol, and let `gh` open a browser to complete the
+one-time sign-in. Once this is done, `git push` and
+`git pull` against GitHub work without any further setup.
+This is the right default for most readers, since it
+avoids generating and registering a key pair.
+
+Check that authentication worked:
 
 ```bash
+gh auth status
+```
+
+SSH keys are a fine alternative once the Git workflow
+feels familiar. They avoid a browser step on each new
+machine but require generating and registering a key pair
+first:
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
 ssh -T git@github.com
 ```
-
-A successful response will say "Hi username! You've
-successfully authenticated."
 
 
 # Creating Your First Repository
@@ -230,16 +264,21 @@ repository.
 **Cloning an existing repository:**
 
 ```bash
-git clone git@github.com:username/repo.git
+gh repo clone username/repo
 ```
 
 This downloads the full project, including all history,
-and sets up the remote connection automatically.
+and sets up the remote connection automatically. Plain
+`git clone https://github.com/username/repo.git` works
+the same way once `gh auth login` has been run.
 
-I found that initializing a repository on GitHub first
-(with a README and `.gitignore` for R) and then cloning
-it locally was the most reliable approach for new
-projects.
+I found that creating a repository on GitHub first (with
+a README and `.gitignore` for R) and then cloning it
+locally was the most reliable approach for new projects:
+
+```bash
+gh repo create my-analysis --private --clone
+```
 
 
 # The Core Workflow: Add, Commit, Push
@@ -381,31 +420,20 @@ the project had grown complex enough that I needed help.
 
 **Adding a collaborator (repository owner):**
 
-1. Log into GitHub and navigate to the repository
-   (for example, `rgt47/x24`).
-2. Select **Settings** in the top row of tabs.
-3. Select **Collaborators** in the left panel.
-4. Click the green **Add people** button.
-5. Search for the collaborator's GitHub username
-   (for example, `rgt4748`).
-6. Select **Add rgt4748** to send the invitation.
+```bash
+gh repo edit rgt47/x24 --add-collaborator rgt4748
+```
 
-**Accepting the invitation (collaborator):**
-
-1. Log into GitHub.
-2. Click the notification icon in the upper right corner.
-3. Select the invitation (for example, "Invitation to
-   join rgt47/x24 from rgt47").
-4. Click the green **Accept Invitation** button.
+This sends the invitation directly from the terminal.
+The collaborator gets a notification on GitHub and
+accepts it there, or from the terminal with
+`gh api` if they prefer, though the notification
+click is simpler for a one-time accept.
 
 **Cloning and contributing (collaborator):**
 
-The collaborator clones the repository to their
-workstation:
-
 ```bash
-git clone \
-  https://github.com/rgt47/x24.git
+gh repo clone rgt47/x24
 cd x24
 ```
 
@@ -426,16 +454,28 @@ git push origin myedits
 
 **Creating a pull request:**
 
-On GitHub, the collaborator clicks **Contribute**, then
-**Open pull request**, enters a title and description,
-and submits the request.
+```bash
+gh pr create --title "Update analysis title" \
+  --body "Corrects the title in x24.Rmd."
+```
+
+`gh` fills in the base branch and repository
+automatically from the current directory.
 
 **Reviewing and merging (repository owner):**
 
-The repository owner reviews the pull request, checks the
-**Files changed** tab, and merges if the changes are
-acceptable. This workflow keeps the main branch clean and
-provides a record of every contribution.
+```bash
+gh pr list
+gh pr diff 12
+gh pr merge 12 --squash --delete-branch
+```
+
+`gh pr diff` shows the changes without opening a
+browser. Squash-merging keeps the `main` branch history
+readable, and `--delete-branch` cleans up the feature
+branch on the remote once it is merged. This workflow
+keeps the main branch clean and provides a record of
+every contribution.
 
 
 # Commit Message Best Practices
@@ -477,11 +517,10 @@ the "how" can refer to the code itself. Instead of
 describing implementation details, highlight what was
 changed and the rationale behind it.
 
-## The Angular Convention
+## Optional: Prefixed Commit Conventions
 
-The Angular project provides an exemplary model for
-structured commit messages. Their convention uses
-specific prefixes that categorize each commit:
+Some projects prefix each commit message with a category,
+following the Angular project's convention:
 
 - `feat:`: a new feature
 - `fix:`: a bug fix
@@ -491,19 +530,25 @@ specific prefixes that categorize each commit:
 - `test:`: adding or updating tests
 - `chore:`: maintenance tasks
 
-By incorporating these prefixes, the commit history
-becomes a structured resource for understanding the
-nature and purpose of each change. For example:
-
 ```bash
 git commit -m "feat: Add cross-validation to model"
 git commit -m "fix: Correct off-by-one in data merge"
-git commit -m "docs: Update README with new workflow"
 ```
 
-I adopted a simplified version of this convention for my
-data science projects and found that it made navigating
-project history substantially easier.
+I tried this for a while and found it added overhead
+without much payoff for a single-analyst project. My
+default now is the plain imperative style from the
+section above, with no prefix:
+
+```bash
+git commit -m "Add cross-validation to model"
+git commit -m "Correct off-by-one in data merge"
+```
+
+A prefix convention is worth adopting for a team project
+where commits need to be filtered or grouped by category.
+For solo analysis work, plain imperative messages are
+simpler and just as informative.
 
 
 # Viewing History and Recovering Work
@@ -524,7 +569,7 @@ representation of the branch and merge history.
 **Viewing a file from a specific commit:**
 
 ```bash
-git show master:analysis.Rmd
+git show main:analysis.Rmd
 ```
 
 This displays the file contents as they existed on the
@@ -550,12 +595,6 @@ version. To return to the current state:
 ```bash
 git checkout main
 ```
-
-**Editing the Git configuration directly:**
-
-For advanced users, the repository-level configuration
-file at `.git/config` can be edited to adjust remote
-URLs, branch tracking, and other settings.
 
 
 # Troubleshooting Common Issues
@@ -595,8 +634,16 @@ stage and commit.
 
 **Authentication failures:**
 
-If `git push` fails with a permission error, verify that
-the SSH key is added to the agent:
+If `git push` fails with a permission error, check the
+`gh` login status first:
+
+```bash
+gh auth status
+gh auth login
+```
+
+If using SSH instead, verify that the key is added to the
+agent:
 
 ```bash
 eval "$(ssh-agent -s)"
@@ -618,7 +665,7 @@ git config user.name && git config user.email
 ```
 
 ```bash
-ssh -T git@github.com
+gh auth status
 ```
 
 ```bash
@@ -629,9 +676,9 @@ mkdir /tmp/test-repo && cd /tmp/test-repo && \
 ```
 
 If `git --version` returns 2.30+, the config shows
-the correct name and email, SSH authenticates
-successfully, and the test commit appears in the log,
-the setup is complete.
+the correct name and email, `gh auth status` reports a
+logged-in account, and the test commit appears in the
+log, the setup is complete.
 
 # Daily Workflow
 
@@ -639,7 +686,7 @@ the setup is complete.
 |:-----|:--------|
 | Check status | `git status` |
 | Stage files | `git add analysis.R data/clean.csv` |
-| Commit changes | `git commit -m "feat: Add model"` |
+| Commit changes | `git commit -m "Add model"` |
 | Push to remote | `git push origin main` |
 | Pull latest | `git pull origin main` |
 | Create branch | `git checkout -b experiment` |
@@ -686,7 +733,13 @@ git config --global --unset init.defaultBranch
 git config --global --unset core.editor
 ```
 
-To remove SSH keys used for GitHub:
+To sign out of the `gh` CLI:
+
+```bash
+gh auth logout
+```
+
+To remove SSH keys used for GitHub, if any were created:
 
 ```bash
 rm ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub
@@ -739,9 +792,9 @@ rigor that characterizes scholarly research.*
 - The core workflow (`add`, `commit`, `push`, `pull`)
   covers the vast majority of daily version control
   needs for a solo analyst.
-- SSH key authentication eliminates password friction
-  and is more secure than HTTPS token-based access for
-  regular use.
+- Authenticating with `gh auth login` over HTTPS
+  eliminates password friction for regular use, and skips
+  the SSH key setup step entirely.
 - The `git log --oneline --graph` command provides a
   rapid overview of project history and branching
   structure.
@@ -779,11 +832,11 @@ rigor that characterizes scholarly research.*
 - This tutorial does not cover Git internals (the object
   model, packfiles, or the reflog), which are important
   for advanced troubleshooting.
-- The commit message conventions described here reflect
-  one widely adopted standard (Angular). Other projects
-  use different conventions, and consistency within a
-  team matters more than which specific convention is
-  chosen.
+- The plain imperative-mood commit style used throughout
+  this post is a default, not a rule. Prefixed conventions
+  like Angular's are common on team projects, and
+  consistency within a team matters more than which
+  specific convention is chosen.
 - Windows-specific configuration (line endings, path
   length limits, credential managers) is not addressed.
 
@@ -831,8 +884,7 @@ straightforward:
 - Start with the core workflow: `init`, `add`, `commit`,
   `push`.
 - Use branches for every experiment, no matter how small.
-- Write commit messages in the imperative mood with a
-  clear prefix.
+- Write commit messages in the imperative mood.
 - Add a `.gitignore` before the first commit.
 - Pull before pushing when collaborating.
 
@@ -846,10 +898,23 @@ narratives of a project's evolution.
 
 **Related blog posts:**
 
-- [Setting Up Dotfiles on GitHub](/posts/24-setupdotfilesongithub/setupdotfilesongithub/analysis/report/index.qmd):
+- [Multi-Laptop macOS Bootstrap](/posts/17-wf-multi-laptop-dotfiles-bootstrap/):
   Managing configuration files with Git
-- [Configuring the Terminal for Data Science](/posts/01-configtermzsh/configtermzsh/analysis/report/index.qmd):
-  Terminal setup that complements a Git workflow
+- [Unix Command-Line Workspace Setup for Data Science](/posts/16-wf-unix-workspace-config/):
+  Terminal setup that complements a Git workflow, and the
+  place to look for git aliases and diff tooling
+  (`git-delta`, `lazygit`) not covered in this post
+
+**Course materials:**
+
+- *Git and GitHub for Biostatistics* (the lab's five-day
+  intro course) covers the same ground as this post in
+  more depth, with exercises. The authentication and
+  commit-message conventions in this post now follow that
+  course.
+- *Git Intermediate* (the three-day follow-on course)
+  covers selective staging, rewriting history, and
+  recovery, none of which is addressed here.
 
 **Key external resources:**
 
@@ -901,7 +966,7 @@ git --version
 
 - Git 2.30 or later
 - macOS 12+ or Ubuntu 20.04+
-- A GitHub account with SSH key configured
+- A GitHub account authenticated with `gh auth login`
 
 All commands were tested on macOS with Zsh and Git
 2.43.0.

@@ -15,6 +15,59 @@ cluster: workflow-construct
 cluster-order: 4
 ---
 
+<!-- ============================================================================
+AUTHOR PROVIDES — concrete inputs the blogger must supply
+
+YAML FRONT MATTER
+  [x] title           — filled in
+  [x] date            — 2026-02-11
+  [x] categories      — git, reproducibility (only 2; consider adding
+                         shell, workflow, setup to match sibling posts)
+  [x] description     — filled in
+  [ ] image           — points to media/images/hero.png, an old
+                         placeholder; media/images/hero.jpg is present on
+                         disk and unused
+  [ ] draft: false    — still draft: true
+
+NARRATIVE INPUTS
+  [x] Hook sentence   — lost analysis work, no backup
+  [x] Pain point      — no version control, ad hoc file naming
+  [x] Motivations     — 6 bullets
+  [x] Objectives      — 4 numbered
+  [x] What is Git?    — definition + distributed-systems framing
+  [x] Daily-workflow table
+  [x] Things to Watch Out For — 5 gotchas
+  [x] Lessons Learnt  — 4 conceptual + 4 technical + 4 gotcha bullets
+  [x] Limitations     — 6 bullets
+  [x] Opportunities   — 6 numbered next-step extensions
+  [x] Wrapping Up     — conclusion + main takeaways
+  [x] See Also        — related posts, course materials, key resources
+
+DELIVERABLES
+  [x] Prerequisites and installation commands (inline; no separate
+      analysis/configs/ deliverable files for this post)
+  [x] Verification commands
+  [x] Uninstall / rollback steps
+
+VERSION MATRIX
+  [ ] OS + version tested   — noted in prose only ("tested on macOS with
+                               Zsh and Git 2.43.0"), no formal table
+  [ ] Tool versions pinned  — Git version only; gh CLI version unstated
+  [ ] Date of last verification — not present
+
+IMAGES (4 total: hero + 3 ambiance, all in media/images/)
+  [ ] Hero image (80% width)        — currently hero.png (old placeholder)
+  [ ] Ambiance image 1 (after Objectives)     — currently ambiance1.png
+  [ ] Ambiance image 2 (after core workflow)  — currently ambiance2.png
+  [ ] Ambiance image 3 (before Lessons Learnt) — currently ambiance3.png
+  [ ] media/images/README.md updated — currently documents unrelated
+      "placeholder coffee" images, not the actual hero/ambiance files
+
+CONTACT & METADATA
+  [x] Author name in YAML matches site author
+  [x] Social links in Let's Connect present
+============================================================================ -->
+
 ![Git logo and branching diagram representing
 version control
 workflows](media/images/hero.png){.img-fluid width=80% fig-align="center"}
@@ -992,6 +1045,48 @@ I would enjoy hearing from you if:
 - You have questions about anything in this tutorial.
 - You just want to say hello and connect.
 
+<!-- ============================================================================
+PRE-PUBLISH QA CHECKLIST: verify each item BEFORE setting draft: false
+
+[ ] YAML
+    [x] title, date, categories, description, image filled in
+    [x] document-type: "blog"
+    [ ] draft: false
+
+[x] Narrative complete (no [bracketed] placeholders remaining)
+    [x] grep '\[' index.qmd returns only legitimate code/links
+
+[x] Reproducibility
+    [x] Post correctly states no analysis pipeline applies (git-only
+        tutorial); minimum requirements listed
+
+[ ] Visual design
+    [ ] 1 hero image (width=80%, fig-align=center) — swap hero.png for
+        the hero.jpg already present in media/images/
+    [ ] 3 ambiance images (.img-fluid only) — swap ambiance1/2/3.png for
+        the matching .jpg files already present in media/images/
+    [ ] media/images/README.md attributes every image actually in use
+
+[ ] Content quality
+    [ ] Zero emoji
+    [ ] Zero em dashes — two instances of "---" used as an em-dash
+        substitute in prose ("...irreversible, and the only...it was
+        essential"; "...modest initial investment---perhaps an
+        afternoon")
+    [ ] Single quotes in prose — several double-quoted phrases remain
+        (e.g. "I'll just save copies", "fixed stuff")
+    [ ] 78-character line wrap throughout
+
+[ ] Reproducibility
+    [ ] Version matrix / "Last verified" field filled in
+
+[ ] Render verification
+    [ ] quarto render produces clean HTML with no warnings
+    [ ] PDF renders without overflow or missing images
+    [ ] Hero image displays in /blog/ listing card
+    [ ] Internal links resolve
+============================================================================ -->
+
 ## Related posts in this cluster
 
 This post is part of the *Workflow Construct* series.
@@ -1002,7 +1097,6 @@ Recommended reading order:
 3. Post 17: [Multi-Laptop macOS Bootstrap](../17-wf-multi-laptop-dotfiles-bootstrap/)
 4. **Post 18: Setting Up Git for Data Science Workflows** (this post)
 5. Post 19: [Setting Up Neovim as a Data Science IDE](../19-wf-neovim-data-science-ide/)
-6. Post 20: [Extending the R-Vim Workflow with LaTeX](../20-wf-r-vim-latex-workflow/)
 7. Post 21: [Modern CLI Replacements for the Shell Layer](../21-wf-modern-cli-tools/)
 8. Post 22: [LLM-Augmented Editing for the Workflow Construct](../22-wf-claude-code-in-shell/)
 10. Post 24: [A pocket terminal with ttyd and Tailscale](../24-wf-pocket-terminal-ttyd-tailscale/)

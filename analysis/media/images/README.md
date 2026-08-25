@@ -9,24 +9,26 @@ placeholder-coffee pool below:
   metaphor). Now wired into `index.qmd` (was pointing at `hero.png`).
 - `ambiance3.jpg`: genuine (UCSD Geisel Library, the site's recurring
   "scholarly setting" motif). Now wired into `index.qmd`.
-- `ambiance1.jpg` and `ambiance2.jpg`: byte-identical to shared
+- `ambiance1.jpg` and `ambiance2.jpg`: were byte-identical to shared
   coffee placeholders (`911815aa...` and `ae25e8cb...` respectively)
-  reused elsewhere on the site. Not real content; still need
-  generation.
+  reused elsewhere on the site.
 
-## Pending generation (2026-08-25)
+**Update (2026-08-25):** `ambiance1.jpg` and `ambiance2.jpg` have
+been replaced with genuine Gemini generations (via the
+`gemini-image-generator` tool), and all four image slots for this
+post are now real:
 
-- **Ambiance 1** (after "Settling in for version control setup"): A
-  single sheet of carbon transfer paper laid over a blank notepad
-  on a wooden desk, with a fountain pen resting beside it,
-  suggesting an exact, traceable duplicate being made. Soft window
-  light, shallow depth of field, warm sepia palette. Metaphor:
-  version control as an exact, recoverable copy.
-- **Ambiance 2**: A hand-bound accordion-fold paper file, partially
-  expanded on a desk to reveal several distinct dated sections, each
-  tabbed with a small colored marker. Soft overhead light, shallow
-  depth of field. Metaphor: commit history as a navigable, dated
-  sequence.
+- `ambiance1.jpg`: a single sheet of carbon transfer paper laid over
+  a blank notepad on a wooden desk, with a fountain pen resting
+  beside it. Metaphor: version control as an exact, recoverable
+  copy.
+- `ambiance2.jpg`: a hand-bound accordion-fold paper file, partially
+  expanded to reveal several distinct dated sections, each tabbed
+  with a small colored marker. Metaphor: commit history as a
+  navigable, dated sequence.
+
+Both processed via `magick -resize 1600x -strip -quality 85` to
+1600x873.
 
 ## Placeholder coffee images (temporary ambiance slots)
 

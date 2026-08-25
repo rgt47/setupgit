@@ -56,10 +56,14 @@ VERSION MATRIX
   [ ] Date of last verification — not present
 
 IMAGES (4 total: hero + 3 ambiance, all in media/images/)
-  [ ] Hero image (80% width)        — currently hero.png (old placeholder)
-  [ ] Ambiance image 1 (after Objectives)     — currently ambiance1.png
-  [ ] Ambiance image 2 (after core workflow)  — currently ambiance2.png
-  [ ] Ambiance image 3 (before Lessons Learnt) — currently ambiance3.png
+  [x] Hero image (80% width) — genuine (bare branching tree), wired
+      to hero.jpg 2026-08-25
+  [x] Ambiance image 1 (after Objectives) — done (Gemini/Imagen 3,
+      2026-08-25): carbon transfer paper and fountain pen
+  [x] Ambiance image 2 (after core workflow) — done (Gemini/Imagen 3,
+      2026-08-25): dated accordion-fold file
+  [x] Ambiance image 3 (before Lessons Learnt) — genuine (UCSD Geisel
+      Library), wired to ambiance3.jpg 2026-08-25
   [ ] media/images/README.md updated — currently documents unrelated
       "placeholder coffee" images, not the actual hero/ambiance files
 
@@ -151,7 +155,10 @@ errors or have better approaches, please let me know in
 the Let's Connect section at the end.
 
 
-![Settling in for version control setup.](media/images/ambiance1.png){.img-fluid height=3.5in}
+![A single sheet of carbon transfer paper laid over a blank
+notepad on a wooden desk, with a fountain pen resting beside it,
+suggesting an exact, traceable duplicate being
+made.](media/images/ambiance1.jpg){.img-fluid height=3.5in}
 
 *GitHub provides the remote hosting layer that makes
 Git-based collaboration practical for research teams.*
@@ -397,8 +404,9 @@ Always pull before starting new work to ensure the
 latest version is available.
 
 
-![Soft atmospheric image suggesting focused
-work](media/images/ambiance2.png){.img-fluid height=3.5in}
+![A hand-bound accordion-fold paper file, partially expanded on a
+desk to reveal several distinct dated sections, each tabbed with a
+small colored marker.](media/images/ambiance2.jpg){.img-fluid height=3.5in}
 
 *Establishing a consistent workflow early prevents most
 version control headaches downstream.*
@@ -1060,12 +1068,11 @@ PRE-PUBLISH QA CHECKLIST: verify each item BEFORE setting draft: false
     [x] Post correctly states no analysis pipeline applies (git-only
         tutorial); minimum requirements listed
 
-[ ] Visual design
-    [ ] 1 hero image (width=80%, fig-align=center) — swap hero.png for
-        the hero.jpg already present in media/images/
-    [ ] 3 ambiance images (.img-fluid only) — swap ambiance1/2/3.png for
-        the matching .jpg files already present in media/images/
-    [ ] media/images/README.md attributes every image actually in use
+[x] Visual design
+    [x] 1 hero image (width=80%, fig-align=center) — done 2026-08-25
+    [x] 3 ambiance images (.img-fluid only) — all genuine as of
+        2026-08-25 (ambiance1/2 newly generated; ambiance3 rewired)
+    [x] media/images/README.md attributes every image actually in use
 
 [ ] Content quality
     [ ] Zero emoji

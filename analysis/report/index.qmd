@@ -4,7 +4,7 @@ author: "Ronald G. Thomas"
 date: "2026-02-11"
 categories: [git, reproducibility]
 description: "I did not really know how much time I was wasting without proper version control until a single overwritten script cost me three days of work."
-image: "media/images/hero.png"
+image: "media/images/hero.jpg"
 document-type: "blog"
 draft: true
 execute:
@@ -70,7 +70,7 @@ CONTACT & METADATA
 
 ![Git logo and branching diagram representing
 version control
-workflows](media/images/hero.png){.img-fluid width=80% fig-align="center"}
+workflows](media/images/hero.jpg){.img-fluid width=80% fig-align="center"}
 
 *Version control is the foundation of every
 reproducible research workflow.*
@@ -815,7 +815,7 @@ rm -rf .git
 This is irreversible and destroys all project history.
 
 ![UCSD Geisel Library, a landmark of research and
-learning](media/images/ambiance3.png){.img-fluid height=3.5in}
+learning](media/images/ambiance3.jpg){.img-fluid height=3.5in}
 
 *Disciplined version control practices support the same
 rigor that characterizes scholarly research.*

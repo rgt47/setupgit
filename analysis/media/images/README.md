@@ -1,5 +1,33 @@
 # Image attributions
 
+## Status (2026-08-25)
+
+Checked via `md5` and visual inspection against the shared
+placeholder-coffee pool below:
+
+- `hero.jpg`: genuine (a bare branching tree, a fitting git-branch
+  metaphor). Now wired into `index.qmd` (was pointing at `hero.png`).
+- `ambiance3.jpg`: genuine (UCSD Geisel Library, the site's recurring
+  "scholarly setting" motif). Now wired into `index.qmd`.
+- `ambiance1.jpg` and `ambiance2.jpg`: byte-identical to shared
+  coffee placeholders (`911815aa...` and `ae25e8cb...` respectively)
+  reused elsewhere on the site. Not real content; still need
+  generation.
+
+## Pending generation (2026-08-25)
+
+- **Ambiance 1** (after "Settling in for version control setup"): A
+  single sheet of carbon transfer paper laid over a blank notepad
+  on a wooden desk, with a fountain pen resting beside it,
+  suggesting an exact, traceable duplicate being made. Soft window
+  light, shallow depth of field, warm sepia palette. Metaphor:
+  version control as an exact, recoverable copy.
+- **Ambiance 2**: A hand-bound accordion-fold paper file, partially
+  expanded on a desk to reveal several distinct dated sections, each
+  tabbed with a small colored marker. Soft overhead light, shallow
+  depth of field. Metaphor: commit history as a navigable, dated
+  sequence.
+
 ## Placeholder coffee images (temporary ambiance slots)
 
 These images are shared placeholders used across all posts until replaced

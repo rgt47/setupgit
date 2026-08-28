@@ -831,7 +831,7 @@ rigor that characterizes scholarly research.*
 
 # What Did We Learn?
 
-## Lessons Learnt
+## Lessons Learned
 
 **Conceptual Understanding:**
 

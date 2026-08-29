@@ -6,7 +6,7 @@ categories: [git, reproducibility]
 description: "I did not really know how much time I was wasting without proper version control until a single overwritten script cost me three days of work."
 image: "media/images/hero.jpg"
 document-type: "blog"
-draft: true
+draft: false
 execute:
   echo: true
   warning: false
